@@ -38,17 +38,17 @@ const competences = [
   {
     name: "SQL",
     icon: "/Img/Logo/sql.png",
-    type: "Base de données",
+    type: "Bases de données",
   },
   {
     name: "MongoDB",
     icon: "/Img/Logo/mongodb.svg",
-    type: "Base de données",
+    type: "Bases de données",
   },
   {
     name: "Elastic Search",
     icon: "/Img/Logo/elastic.png",
-    type: "Base de données",
+    type: "Bases de données",
   },
   {
     name: "Git",
