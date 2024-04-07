@@ -187,7 +187,7 @@ const Languages = () => (
         justifyContent="space-evenly"
         sx={{ width: "100%" }}
       >
-        <MyListItem type="Base de données" />
+        <MyListItem type="Bases de données" />
         <MyListItem type="Développement" />
       </Stack>
     </Stack>
