@@ -1,64 +1,71 @@
 import React, { useState } from "react";
-import "./App.css";
-import { Container, Stack, Typography, Card, Paper, IconButton } from "@mui/material";
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import { motion } from "framer-motion";
+import { Container, Stack, Typography, Card, Paper } from "@mui/material";
+
 import Atome from "./Atome/Atome";
 import Languages from "./Languages";
 import Experiences from './Experiences';
 import Canvas from "./Canvas";
+import "./App.css";
+import Nav from "./Nav";
+
 
 function App() {
-  const [headerPage, setHeaderPage] = useState(true);
-  const toggleHeader = () => {
-    setHeaderPage(e => !e);
-  }
+  const [animateHeader, setAnimateHeader] = useState(true);
+  const [isHeaderPage, setIsHeaderPage] = useState(true);
+  const timeAnimationHeader = 0.8;
 
   return (
     <div className="App">
-      {headerPage ? (
-        <header className="header">
-          <Typography variant="h1">Fougerolle Alain</Typography>
-          <Typography variant="h2">Développeur Full Stack</Typography>
-          <IconButton aria-label="next" color="primary" onClick={toggleHeader} sx={{
-            position: "absolute",
-            bottom: "100px",
-            zIndex: 10,
-            left: "100px"
-          }} >
-            <ArrowDownwardIcon sx={{ fontSize: '80px' }} />
-          </IconButton>
-          <Atome />
-        </header>
-      ) : (
-        <main>
-          <Canvas />
-          <IconButton aria-label="next" color="primary" onClick={toggleHeader} sx={{
-            position: "absolute",
-            top: "100px",
-            zIndex: 10,
-            left: "100px"
-          }} >
-            <ArrowUpwardIcon sx={{ fontSize: '80px' }} />
-          </IconButton>
-          <Stack spacing={12} alignItems="center" justifyContent='center' sx={{ paddingTop: 6, marginBottom: 3 }}>
-            <Container maxWidth="xl">
-              <Stack spacing={6} alignItems="center" justifyContent='center'>
-                <Typography variant="h3" className="typo">À propos de moi</Typography>
-                <Card className="card" sx={{ width: "90%" }}>
-                  <Paper variant="outlined" sx={{ padding: 2 }}>
-                    Passionné de développement et autodidacte depuis plus de 5 ans, mes expériences professionnelles m'ont forgé une solide expertise dans diverses technologies.<br /><br />
-                    Capable de jongler avec aisance entre différentes technologies, ma soif d'apprendre, et ma passion pour ce domaine font de moi un candidat idéal pour contribuer pleinement à un projet d'envergure où je pourrais m'épanouir professionnellement.<br /><br />
-                    Pour toute question, n'hésitez pas à me contacter via email ou téléphone.
-                  </Paper>
-                </Card>
-              </Stack>
-            </Container>
+      <Nav
+        isHeaderPage={isHeaderPage}
+        setIsHeaderPage={setIsHeaderPage}
+        setAnimateHeader={setAnimateHeader}
+        animateHeader={animateHeader}
+        timeAnimationHeader={timeAnimationHeader}
+      />
 
-            <Languages />
-            <Experiences />
-          </Stack>
-        </main>
+      {isHeaderPage ? (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: animateHeader ? 1 : 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: timeAnimationHeader }}
+        >
+          <header className="header">
+            <Typography variant="h1">Fougerolle Alain</Typography>
+            <Typography variant="h2">Développeur Full Stack</Typography>
+            <Atome />
+          </header>
+        </motion.div>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: !animateHeader ? 1 : 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: timeAnimationHeader }}
+        >
+          <main>
+            <Canvas />
+            <Stack spacing={12} alignItems="center" justifyContent='center' sx={{ paddingTop: 6, marginBottom: 3 }}>
+              <Container maxWidth="xl">
+                <Stack spacing={6} alignItems="center" justifyContent='center'>
+                  <Typography variant="h3" className="typo">À propos de moi</Typography>
+                  <Card className="card" sx={{ width: "90%" }}>
+                    <Paper variant="outlined" sx={{ padding: 2 }}>
+                      Passionné de développement et autodidacte depuis plus de 5 ans, mes expériences professionnelles m'ont forgé une solide expertise dans diverses technologies.<br /><br />
+                      Capable de jongler avec aisance entre différentes technologies, ma soif d'apprendre, et ma passion pour ce domaine font de moi un candidat idéal pour contribuer pleinement à un projet d'envergure où je pourrais m'épanouir professionnellement.<br /><br />
+                      Pour toute question, n'hésitez pas à me contacter via email ou téléphone.
+                    </Paper>
+                  </Card>
+                </Stack>
+              </Container>
+
+              <Languages />
+              <Experiences />
+            </Stack>
+          </main>
+        </motion.div>
       )}
 
       <footer>

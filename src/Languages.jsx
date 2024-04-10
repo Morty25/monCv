@@ -72,7 +72,7 @@ const competences = [
   },
   {
     name: "Docker",
-    icon: "/Img/logo/docker.jfif",
+    icon: "/Img/logo/docker.png",
     type: "Back-end",
   },
   {
@@ -87,7 +87,7 @@ const competences = [
   },
   {
     name: "Doctrine",
-    icon: "/Img/logo/doctrine.svg",
+    icon: "/Img/logo/doctrine.png",
     type: "Back-end",
   },
   {
@@ -97,7 +97,7 @@ const competences = [
   },
   {
     name: "ESLint",
-    icon: "/Img/logo/eslint.jpg",
+    icon: "/Img/logo/eslint.png",
     type: "Développement",
   },
   {
